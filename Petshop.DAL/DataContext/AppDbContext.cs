@@ -1,0 +1,37 @@
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Petshop.DAL.DataContext.Entities;
+
+namespace Petshop.DAL.DataContext
+{
+    public class AppDbContext : IdentityDbContext<AppUser>
+    {
+        public AppDbContext(DbContextOptions<AppDbContext>options) : base(options)
+        {
+
+        }
+
+        public DbSet<Category> Categories { get; set; } = null!;
+        public DbSet<Product> Products { get; set; } = null!;
+        public DbSet<ProductImage> ProductImages { get; set; } = null!;
+        public DbSet<ProductTag> ProductTags { get; set; } = null!;
+        public DbSet<Review> Reviews { get; set; } = null!;
+        public DbSet<Tag> Tags { get; set; } = null!;
+        public DbSet<ContactInfo> ContactInfos { get; set; } = null!;
+        public DbSet<FooterBottom> FooterBottoms { get; set; } = null!;
+        public DbSet<Logo> Logos { get; set; } = null!;
+        public DbSet<NewsletterInfo> NewsletterInfos { get; set; } = null!;
+        public DbSet<SocialLink> SocialLinks { get; set; } = null!;
+        public DbSet<Slider> Sliders { get; set; } = null!;
+        public DbSet<SearchInfo> SearchInfos { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Product>()
+               .Property(p => p.Price)
+               .HasPrecision(18, 2);
+
+            base.OnModelCreating(builder);
+        }
+    }
+}
