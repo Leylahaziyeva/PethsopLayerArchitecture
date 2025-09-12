@@ -33,5 +33,36 @@ namespace Petshop.DAL.DataContext
 
             base.OnModelCreating(builder);
         }
+
+        public override int SaveChanges()
+        {
+            UpdateTimestamps();
+            return base.SaveChanges();
+        }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            UpdateTimestamps();
+            return await base.SaveChangesAsync(cancellationToken);
+        }
+
+        private void UpdateTimestamps()
+        {
+            var entries = ChangeTracker.Entries()
+                .Where(e => e.Entity is TimeStample &&
+                           (e.State == EntityState.Added || e.State == EntityState.Modified));
+
+            foreach (var entry in entries)
+            {
+                var timestamp = (TimeStample)entry.Entity;
+
+                if (entry.State == EntityState.Added)
+                {
+                    timestamp.CreatedAt = DateTime.UtcNow;
+                }
+
+                timestamp.UpdatedAt = DateTime.UtcNow;
+            }
+        }
     }
 }
