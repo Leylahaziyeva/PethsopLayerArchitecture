@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Petshop.BLL;
+using Petshop.BLL.Constants;
 using Petshop.DAL;
 using Petshop.DAL.DataContext;
+using Petshop.DAL.DataContext.Entities;
 
 namespace Petshop.MVC
 {
@@ -15,6 +18,23 @@ namespace Petshop.MVC
 
             builder.Services.AddDataAccessLayerServices(builder.Configuration);
             builder.Services.AddBussinessLogicLayerServices();
+            builder.Services.AddHttpContextAccessor();
+
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+
+                //options.User.RequireUniqueEmail = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 3;
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            FilePathConstants.ReviewImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "reviews");
+            FilePathConstants.ProductImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "products");
+            FilePathConstants.ProfileImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "users");
 
             var app = builder.Build();
 

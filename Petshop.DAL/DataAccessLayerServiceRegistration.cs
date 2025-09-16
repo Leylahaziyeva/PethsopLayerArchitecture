@@ -23,7 +23,7 @@ namespace Petshop.DAL
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ISliderRepository, SliderRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
             return services;
         }

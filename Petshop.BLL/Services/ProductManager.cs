@@ -42,7 +42,7 @@ namespace Petshop.BLL.Services
 
             productViewModel.CategoryName = product.Category?.Name;
 
-            productViewModel.Tags = product.ProductTags.Where(pt => pt.Tag != null).Select(pt => pt.Tag!.Name).ToList();
+            productViewModel.TagNames = product.ProductTags.Select(pt => pt.Tag!.Name).ToList();
 
             return productViewModel; 
         }

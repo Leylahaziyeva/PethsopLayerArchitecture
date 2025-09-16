@@ -37,7 +37,7 @@
                     {
                         <div class="col-md-4 my-4">
                             <div class="card position-relative">
-                                <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">
+                                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
                                     <img src="~/images/@product.CoverImageName" class="img-fluid rounded-4" alt="image">
                                 </a>
                                 <div class="card-body p-0">
@@ -58,13 +58,11 @@
                                         </h3>
 
                                         <div class="d-flex flex-wrap mt-3">
-                                            <a class="btn-cart me-3 px-4 pt-3 pb-3" data-product-id="@product.Id">
+                                            <a onclick="addToBasket(@product.Id)" class="btn-cart me-3 px-4 pt-3 pb-3" data-product-id="@product.Id">
                                                 <h5 class="text-uppercase m-0">Add to Cart</h5>
                                             </a>
-                                            <a href="#"
-                                               class="btn-wishlist px-4 pt-3 btn btn-outline-primary add-to-wishlist"
-                                               data-id="@product.Id">
-                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            <a onclick="addToWishlist(@product.Id)"  class="btn-wishlist px-4 pt-3 btn btn-outline-primary add-to-wishlist"
+                                               data-id="@product.Id"><iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                                             </a>
                                         </div>
                                     </div>
@@ -107,12 +105,12 @@
                     <div class="widget-product-tags pt-3">
                         <h4 class="widget-title">Tags</h4>
                         <ul class="product-tags sidebar-list list-unstyled">
-                            @foreach (var tag in Model.Tags)
+                            @foreach (var item in Model.TagNames)
                             {
-                                <li class="tags-item">
-                                    <a href="#" class="nav-link">@tag.Name</a>
+                                <li data-value="S" class="select-item">
+                                    <a href="#">@item</a>@(item != Model.TagNames.Last() ? "," : "")
                                 </li>
-                            } 
+                            }
                         </ul>
                     </div>
                     <div class="widget-price-filter pt-3">
@@ -168,6 +166,4 @@
     </div>
 </section>
 
-@section Scripts {
-    <script src="~/js/load-more.js"></script>
-}
+

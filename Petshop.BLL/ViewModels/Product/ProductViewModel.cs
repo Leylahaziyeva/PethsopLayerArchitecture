@@ -1,5 +1,4 @@
-﻿using Petshop.BLL.ViewModels.Category;
-using Petshop.DAL.DataContext.Entities;
+﻿using Petshop.BLL.ViewModels.Review;
 
 namespace Petshop.BLL.ViewModels.Product
 {
@@ -8,6 +7,8 @@ namespace Petshop.BLL.ViewModels.Product
         public int Id { get; set; }
 
         public string? Name { get; set; }
+        
+        public string DetailsUrl => $"{Name?.Replace(" ", "-").Replace("/", "-")}-{Id}";
 
         public string? Description { get; set; }
 
@@ -19,10 +20,10 @@ namespace Petshop.BLL.ViewModels.Product
 
         public string? CategoryName { get; set; }
 
-        public CategoryViewModel? Category { get; set; }
-
-        public IList<string> Tags { get; set; } = new List<string>();
-
         public IList<string> ImageNames { get; set; } = [];
+
+        public IList<string> TagNames { get; set; } = [];
+
+        public List<ReviewViewModel> Reviews { get; set; } = [];
     }
 }

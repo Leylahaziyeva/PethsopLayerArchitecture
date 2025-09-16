@@ -1,0 +1,83 @@
+﻿@model WishlistViewModel
+
+<section id="Wishlist" class="py-5 my-5">
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="card-title text-uppercase">Product</th>
+                    <th scope="col" class="card-title text-uppercase">Unit Price</th>
+                    <th scope="col" class="card-title text-uppercase">Stock Status</th>
+                    <th scope="col" class="card-title text-uppercase"></th>
+                </tr>
+            </thead>
+            <tbody id="wishlistContainer">
+                @if (Model.Items.Any())
+                {
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td class="py-4">
+                                <div class="cart-info d-flex flex-wrap align-items-center">
+                                    <div class="col-lg-3">
+                                        <div class="card-image">
+                                            <img src="~/images/@item.ImageName" alt="@item.ProductName" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div class="card-detail ps-3">
+                                            <h5 class="card-title">
+                                                <a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="text-decoration-none">
+                                                    @item.ProductName
+                                                </a>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-4 align-middle">
+                                <div class="total-price">
+                                    <span class="secondary-font fw-medium">$@item.Price</span>
+                                </div>
+                            </td>
+                            <td class="py-4 align-middle">
+                                <div class="total-price">
+                                    <span class="secondary-font fw-medium">
+                                        @(item.Price > 0 ? "In Stock" : "Out of Stock")
+                                    </span>
+                                </div>
+                            </td>
+                            <td class="py-4 align-middle">
+                                <div class="d-flex align-items-center">
+                                    <div class="me-4">
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <button type="submit" class="btn btn-dark p-3 text-uppercase fs-6 btn-rounded-none w-100">
+                                                Add to cart
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="cart-remove">
+                                        <a onclick="removeFromWishlist(@item.ProductId, this)">
+                                            <svg width="24" height="24">
+                                                <use xlink:href="#trash"></use>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-5">
+                            <h5>Your wishlist is empty.</h5>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

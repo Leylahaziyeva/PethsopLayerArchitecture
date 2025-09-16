@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Petshop.BLL\Petshop.BLL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>

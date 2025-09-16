@@ -4,11 +4,11 @@
 {
     <div class="col-md-4 my-4">
         <div class="card position-relative">
-            <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
                 <img src="images/@product.CoverImageName" class="img-fluid rounded-4" alt="image">
             </a>
             <div class="card-body p-0">
-                <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id">
                     <h3 class="card-title pt-4 m-0">@product.Name</h3>
                 </a>
 
@@ -26,10 +26,10 @@
                     </h3>
 
                     <div class="d-flex flex-wrap mt-3">
-                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3" data-product-id="@product.Id">
+                        <a onclick ="addToBasket(@product.Id)" class="btn-cart me-3 px-4 pt-3 pb-3" data-product-id="@product.Id">
                             <h5 class="text-uppercase m-0">Add to Cart</h5>
                         </a>
-                        <a href="#"
+                        <a onclick="addToWishlist(@product.Id)"
                            class="btn-wishlist px-4 pt-3 btn btn-outline-primary add-to-wishlist"
                            data-id="@product.Id">
                             <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>

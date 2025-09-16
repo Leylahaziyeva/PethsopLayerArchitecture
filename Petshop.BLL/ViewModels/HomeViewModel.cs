@@ -1,7 +1,6 @@
 ﻿using Petshop.BLL.ViewModels.Category;
 using Petshop.BLL.ViewModels.Product;
 using Petshop.BLL.ViewModels.Slider;
-using Petshop.BLL.ViewModels.Tag;
 
 namespace Petshop.BLL.ViewModels
 {
@@ -13,6 +12,5 @@ namespace Petshop.BLL.ViewModels
         public List<ProductViewModel> PetFoodProducts { get; set; } = [];
         public List<ProductViewModel> BestSellingProducts { get; set; } = [];
         public List<SliderViewModel> Sliders { get; set; } = [];
-        public List<TagViewModel> Tags { get; set; } = [];
     }
 }

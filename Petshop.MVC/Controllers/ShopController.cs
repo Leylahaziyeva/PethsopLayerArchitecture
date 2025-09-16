@@ -33,17 +33,5 @@ namespace Petshop.MVC.Controllers
 
             return PartialView("_ProductPartialForLoadMore", pagedProducts);
         }
-
-        public async Task<IActionResult> Details(int id)
-        {
-            var product = await _productService.GetByIdWithDetailsAsync(id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
-        }
     }
 }

@@ -31,8 +31,10 @@ namespace Petshop.DAL.Repositories
 
         public async Task<Product?> GetByIdWithDetailsAsync(int id)
         {
-            return await _dbContext.Products.Include(p => p.Category).Include(p => p.Images)
-                .Include(p => p.ProductTags) .ThenInclude(pt => pt.Tag) 
+            return await _dbContext.Products
+                .Include(p => p.Category)
+                .Include(p => p.Images)
+                .Include(p => p.ProductTags).ThenInclude(pt => pt.Tag)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
