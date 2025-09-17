@@ -24,6 +24,7 @@ namespace Petshop.DAL
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ISliderRepository, SliderRepository>();
             services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
 
             return services;
         }

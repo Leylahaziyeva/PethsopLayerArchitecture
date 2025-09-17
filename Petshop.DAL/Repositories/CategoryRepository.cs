@@ -9,18 +9,5 @@ namespace Petshop.DAL.Repositories
         public CategoryRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
-
-        //public override Task CreateAsync(Category entity)
-        //{
-        //    entity.CreatedAt = DateTime.UtcNow.AddHours(4);
-
-        //    return base.CreateAsync(entity);
-        //}
-
-        //override public Task UpdateAsync(Category entity)
-        //{
-        //    entity.UpdatedAt = DateTime.UtcNow.AddHours(4);
-        //    return base.UpdateAsync(entity);
-        //}
     }
 }

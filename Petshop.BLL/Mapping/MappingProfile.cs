@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Petshop.BLL.ViewModels.Blog;
 using Petshop.BLL.ViewModels.Category;
 using Petshop.BLL.ViewModels.Product;
 using Petshop.BLL.ViewModels.Review;
@@ -27,6 +28,10 @@ namespace Petshop.BLL.Mapping
             CreateMap<Slider, SliderViewModel>().ReverseMap();
             CreateMap<Slider, CreateSliderViewModel>().ReverseMap();
             CreateMap<Slider, UpdateSliderViewModel>().ReverseMap();
+
+            CreateMap<Blog, BlogViewModel>().ReverseMap();
+            CreateMap<Blog, CreateBlogViewModel>().ReverseMap();
+            CreateMap<Blog, UpdateBlogViewModel>().ReverseMap();
 
             CreateMap<Review, CreateReviewViewModel>().ReverseMap();
             CreateMap<Review, UpdateReviewViewModel>().ReverseMap();

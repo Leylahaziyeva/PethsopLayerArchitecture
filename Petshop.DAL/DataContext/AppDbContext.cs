@@ -24,6 +24,7 @@ namespace Petshop.DAL.DataContext
         public DbSet<SocialLink> SocialLinks { get; set; } = null!;
         public DbSet<Slider> Sliders { get; set; } = null!;
         public DbSet<SearchInfo> SearchInfos { get; set; } = null!;
+        public DbSet<Blog> Blogs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

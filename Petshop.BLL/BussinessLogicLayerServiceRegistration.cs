@@ -18,10 +18,11 @@ namespace Petshop.BLL
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<IHomeService, HomeManager>();
             services.AddScoped<IShopService, ShopManager>();
+            services.AddScoped<IReviewService, ReviewManager>();
+            services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<FileService>();
             services.AddScoped<WishlistManager>();
             services.AddScoped<BasketManager>();
-            services.AddScoped<IReviewService, ReviewManager>();
-            services.AddScoped<FileService>();
 
             return services;
         }
