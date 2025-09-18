@@ -50,9 +50,9 @@
                             <td class="py-4 align-middle">
                                 <div class="d-flex align-items-center">
                                     <div class="me-4">
-                                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                        <form asp-controller="Cart" asp-action="Index" method="post">
                                             <input type="hidden" name="productId" value="@item.ProductId" />
-                                            <button type="submit" class="btn btn-dark p-3 text-uppercase fs-6 btn-rounded-none w-100">
+                                            <button onclick="addToBasket(@item.ProductId)" class="btn btn-dark p-3 text-uppercase fs-6 btn-rounded-none w-100">
                                                 Add to cart
                                             </button>
                                         </form>

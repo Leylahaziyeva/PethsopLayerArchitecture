@@ -1,12 +1,13 @@
 ﻿function addToWishlist(productId) {
     fetch('/wishlist/addToWishlist/' + productId, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        method: 'POST'
     })
-        .then(response => {
-            if (response.ok) {
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
                 alert('Added to wishlist!');
-            } else {
+            }
+            else {
                 alert('Failed to add product to wishlist.');
             }
         })
@@ -17,20 +18,18 @@
 }
 function removeFromWishlist(productId, element) {
     fetch('/wishlist/removeFromWishlist/' + productId, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        method: 'POST'
     })
-        .then(response => {
-            if (response.ok) {
-                element.closest('tr').remove(); 
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                element.closest('tr').remove();
             } else {
                 alert('Failed to remove product from wishlist.');
             }
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('An error occurred while removing the product from the basket.');
+            alert('An error occurred while removing the product from the wishlist.');
         });
 }

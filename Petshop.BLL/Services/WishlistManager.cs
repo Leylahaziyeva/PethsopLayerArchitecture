@@ -23,13 +23,17 @@ namespace Petshop.BLL.Services
             var wishlist = GetWishlistFromCookie();
             var wishlistItem = wishlist.FirstOrDefault(item => item.ProductId == productId);
 
-              wishlist.Add(new WishlistCookieItemViewModel
+            if (wishlistItem == null)
+            {
+                wishlist.Add(new WishlistCookieItemViewModel
                 {
                     ProductId = productId
                 });
-            
-            SaveWishlistToCookie(wishlist);
+
+                SaveWishlistToCookie(wishlist);
+            }
         }
+
         public void RemoveFromWishlist(int productId)
         {
             var wishlist = GetWishlistFromCookie();
@@ -69,7 +73,7 @@ namespace Petshop.BLL.Services
             {
                 return new List<WishlistCookieItemViewModel>();
             }
-            return System.Text.Json.JsonSerializer.Deserialize<List<WishlistCookieItemViewModel>>(cookie) ?? [];
+            return System.Text.Json.JsonSerializer.Deserialize<List<WishlistCookieItemViewModel>>(cookie) ?? new List<WishlistCookieItemViewModel>();
         }
 
         private void SaveWishlistToCookie(List<WishlistCookieItemViewModel> wishlist)
@@ -82,7 +86,5 @@ namespace Petshop.BLL.Services
             var cookieValue = System.Text.Json.JsonSerializer.Serialize(wishlist);
             _httpContextAccessor.HttpContext?.Response.Cookies.Append(WishlistCookieName, cookieValue, cookieOptions);
         }
-
-
     }
 }

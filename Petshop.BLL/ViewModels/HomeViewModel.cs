@@ -1,4 +1,5 @@
-﻿using Petshop.BLL.ViewModels.Category;
+﻿using Petshop.BLL.ViewModels.Blog;
+using Petshop.BLL.ViewModels.Category;
 using Petshop.BLL.ViewModels.Product;
 using Petshop.BLL.ViewModels.Slider;
 
@@ -12,5 +13,6 @@ namespace Petshop.BLL.ViewModels
         public List<ProductViewModel> PetFoodProducts { get; set; } = [];
         public List<ProductViewModel> BestSellingProducts { get; set; } = [];
         public List<SliderViewModel> Sliders { get; set; } = [];
+        public List<BlogViewModel> Blogs { get; set; } = [];
     }
 }

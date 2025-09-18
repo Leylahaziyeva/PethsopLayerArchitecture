@@ -26,7 +26,7 @@
                             </a>
                             <div class="card-text">
                                 <p class="blog-paragraph fs-6">
-                                    @(blog.Content.Length > 100 ? blog.Content.Substring(0, 100) + "..." : blog.Content)
+                                    @(blog.Content.Length > 150 ? blog.Content.Substring(0, 150) + "..." : blog.Content)
                                 </p>
                                 <a asp-action="Details" asp-route-id="@blog.Id" class="blog-read">read more</a>
                             </div>

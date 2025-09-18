@@ -13,5 +13,18 @@ namespace Petshop.BLL.Services
         {
             _blogRepository = blogRepository;
         }
+
+        public async Task<List<BlogViewModel>> GetLatestAsync(int count)
+        {
+            var blogs = await _blogRepository.GetLatestAsync(count);
+            return blogs.Select(b => new BlogViewModel
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Content = b.Content,
+                PublishDate = b.PublishDate,
+                ImageName = b.ImageName
+            }).ToList();
+        }
     }
 }

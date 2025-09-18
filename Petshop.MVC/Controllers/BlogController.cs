@@ -40,6 +40,7 @@ namespace Petshop.MVC.Controllers
             if (!ModelState.IsValid) return View(model);
 
             await _blogService.CreateAsync(model);
+
             return RedirectToAction(nameof(Index));          
         }
 
@@ -56,6 +57,7 @@ namespace Petshop.MVC.Controllers
                 ImageName = blog.ImageName,
                 PublishDate = blog.PublishDate
             };
+
             return View(updateBlogViewModel);
         }
 

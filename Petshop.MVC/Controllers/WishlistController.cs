@@ -17,23 +17,24 @@ namespace Petshop.MVC.Controllers
             return View(wishlist);
         }
 
-        [HttpPost]
+        [HttpPost("wishlist/addToWishlist/{productId}")]
         public IActionResult AddToWishlist(int productId)
         {
             _wishlistManager.AddToWishlist(productId);
-            return RedirectToAction("Index");
+            return Json(new { success = true });
         }
+
         public async Task<IActionResult> GetWishlist()
         {
             var wishlist = await _wishlistManager.GetWishlistAsync();
             return View("Index", wishlist);
         }
 
-        [HttpPost]
+        [HttpPost("wishlist/removeFromWishlist/{productId}")]
         public IActionResult RemoveFromWishlist(int productId)
         {
             _wishlistManager.RemoveFromWishlist(productId);
-            return RedirectToAction("Index");
+            return Json(new { success = true });
         }
     }
 }
