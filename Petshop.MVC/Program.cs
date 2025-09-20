@@ -35,6 +35,8 @@ namespace Petshop.MVC
             FilePathConstants.ReviewImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "reviews");
             FilePathConstants.ProductImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "products");
             FilePathConstants.ProfileImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "users");
+            FilePathConstants.CategoryImagePath = Path.Combine(builder.Environment.WebRootPath, "images", "categories");
+
 
             var app = builder.Build();
 

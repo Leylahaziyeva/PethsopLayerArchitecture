@@ -5,5 +5,6 @@
         public static string ProductImagePath = "";
         public static string ReviewImagePath = "";
         public static string ProfileImagePath = "";
+        public static string CategoryImagePath = "";
     }
 }

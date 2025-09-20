@@ -62,12 +62,18 @@ namespace Petshop.MVC.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            var category = await _categoryService.GetByIdAsync(id);
+
+            if (category == null) return NotFound();
+
             var exists = (await _categoryService.GetAllAsync(c => c.Name == model.Name && c.Id != id)).Any();
             if (exists)
             {
                 ModelState.AddModelError("Name", "Category with this name already exists.");
                 return View(model);
             }
+
+            model.ImageName = category.ImageName;
 
             var updated = await _categoryService.UpdateAsync(id, model);
             if (!updated) return NotFound();
