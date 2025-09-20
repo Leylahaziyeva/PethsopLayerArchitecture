@@ -13,6 +13,14 @@ namespace Petshop.MVC.Controllers
             _blogService = blogService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var blogs = await _blogService.GetAllAsync();
+            var initialBlogs = blogs.Take(3).ToList();
+            ViewBag.BlogCount = blogs.Count();
+            return View(initialBlogs);
+        }
+
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _blogService.GetByIdAsync(id);
@@ -74,6 +82,15 @@ namespace Petshop.MVC.Controllers
             if (!deleted) return NotFound();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Partial(int skip)
+        {
+            var blogs = await _blogService.GetAllAsync();
+
+            var nextBlogs = blogs.Skip(skip).Take(3).ToList();
+
+            return PartialView("_BlogPartial", nextBlogs);
         }
     }
 }
