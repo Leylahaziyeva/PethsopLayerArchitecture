@@ -15,4 +15,3 @@ const productCount = parseInt(document.getElementById("productCount").value);
                 }
             });
     });
-  

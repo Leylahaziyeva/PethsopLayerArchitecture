@@ -13,12 +13,6 @@ namespace Petshop.MVC.Controllers
             _blogService = blogService;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var blogs = await _blogService.GetAllAsync(orderBy: q => q.OrderByDescending(b => b.PublishDate));
-            return View(blogs);
-        }
-
         public async Task<IActionResult> Details(int id)
         {
             var blog = await _blogService.GetByIdAsync(id);
@@ -27,7 +21,6 @@ namespace Petshop.MVC.Controllers
 
             return View(blog);
         }
-
         public IActionResult Create()
         {
             return View();

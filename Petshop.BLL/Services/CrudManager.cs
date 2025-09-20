@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 namespace Petshop.BLL.Services
 {
     public class CrudManager<TEntity, TViewModel, TCreateViewModel, TUpdateViewModel> : ICrudService<TEntity, TViewModel, TCreateViewModel, TUpdateViewModel>
- where TEntity : Entity
+where TEntity : Entity
     {
         protected readonly IRepository<TEntity> Repository;
         protected readonly IMapper Mapper;
@@ -44,6 +44,15 @@ namespace Petshop.BLL.Services
             var viewModels = Mapper.Map<IEnumerable<TViewModel>>(entities);
 
             return viewModels;
+        }
+
+        public virtual async Task<TViewModel?> GetAsync(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null, bool AsNoTracking = false)
+        {
+            var entity = await Repository.GetAsync(predicate, include, AsNoTracking);
+
+            var viewModel = Mapper.Map<TViewModel>(entity);
+
+            return viewModel;
         }
 
         public virtual async Task<TViewModel?> GetByIdAsync(int id)
